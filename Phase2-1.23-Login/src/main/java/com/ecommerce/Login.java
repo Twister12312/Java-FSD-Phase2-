@@ -3,6 +3,7 @@ package com.ecommerce;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +29,19 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String email= request.getParameter("userId");
 		String passw= request.getParameter("pass");
+		RequestDispatcher rd;
 		out.println("<html><body>");
 		if(email.equals("abcd@gmail.com") && passw.equals("123")) {
 			//successful login
@@ -42,20 +51,17 @@ public class Login extends HttpServlet {
 		    out.println("<a href='dashboard'>Dashboard</a><br>");
 			//response.sendRedirect("dashboard"); 
 		}
-		else {//added else
-			out.println("Login failed! Please try again<br>");
-			
-			out.println("<a href='index.html'>Go back to login</a><br>");//go back to login
-			out.println("</body></html>");}
-		
-	}
+		//out.println("</body></html>");
+		//added else
+		else {
+		    out.println("Login failed! Please try again.<br>");
+			rd=request.getRequestDispatcher("index.html");
+			rd.include(request, response);
+			//out.println("<a href='index.html'>Go back to login</a><br>");//go back to login
+			//out.println("</body></html>");}
+		}
+			out.println("</body></html>");
+	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+}
 }

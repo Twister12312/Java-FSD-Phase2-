@@ -40,6 +40,7 @@ public class Dashboard extends HttpServlet {
 		out.println("Welcome! your UserId is :" + userId + "<br>");
 		out.println("<a href='index.html'>Logout of session</a><br>");
 		out.println("</body></html>");
+		session.invalidate();
 	}
 	  
 	/**
